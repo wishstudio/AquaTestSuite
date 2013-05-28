@@ -1,0 +1,23 @@
+/*
+Aqua Test Suite
+
+0500: Array creation and get length
+
+- output
+10
+10
+
+*/
+
+.class Test
+{
+	.method static public function Main()
+	{
+		ldi	$1, 10
+		newarr	$2, int32($1)
+		ldlen	$3, $2
+		printi	$1
+		printi	$3
+		ret
+	}
+}

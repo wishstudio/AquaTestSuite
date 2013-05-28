@@ -1,0 +1,55 @@
+/*
+Aqua Test Suite
+
+0155: Static methods, min/max function
+
+- output
+10
+20
+10
+20
+
+*/
+
+.class SubClass
+{
+	.method static public function min(int32, int32) -> int32
+	{
+		/* right if $0 > $1 */
+		jgei	$0, $1, RIGHT
+LEFT:		ret	$0
+RIGHT:		ret	$1
+	}
+
+	.method static public function max(int32, int32) -> int32
+	{
+		/* right if $0 < $1 */
+		jlei	$0, $1, RIGHT
+LEFT:		ret	$0
+RIGHT:		ret	$1
+	}
+}
+
+.class Test
+{
+	.method static public function Main()
+	{
+		ldi	$1, 10
+		ldi	$2, 20
+		printi	$1
+		printi	$2
+
+		/* $3 = min($1, $2) */
+		ldi	$3, $1
+		ldi	$4, $2
+		call	$3, SubClass::min(int32, int32) -> int32
+		printi	$3
+
+		/* $3 = max($1, $2) */
+		ldi	$3, $1
+		ldi	$4, $2
+		call	$3, SubClass::max(int32, int32) -> int32
+		printi	$3
+		ret
+	}
+}

@@ -1,0 +1,60 @@
+/*
+Aqua Test Suite
+
+0302: Catch subclass exception
+
+- output
+2
+
+*/
+
+.class Exception
+{
+	.method public function .ctor(int32)
+	{
+		ret
+	}
+}
+
+.class SubExceptionA: Exception
+{
+	.method public function .ctor(int32)
+	{
+		ret
+	}
+}
+
+.class SubExceptionB: Exception
+{
+	.method public function .ctor(int32)
+	{
+		ret
+	}
+}
+
+.class Test
+{
+	.method static public function Main()
+	{
+		.try {
+			new	$0, SubExceptionA::.ctor(int32)
+			throw	$0
+
+			/* Should not come here */
+			ldi	$0, 12345
+			printi	$0
+			leave	LABEL
+		}
+		.catch (SubExceptionB $0) {
+			ldi	$0, 1
+			printi	$0
+			leave	LABEL
+		}
+		.catch (Exception $0) {
+			ldi	$0, 2
+			printi	$0
+			leave	LABEL
+		}
+LABEL:		ret
+	}
+}

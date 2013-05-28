@@ -1,0 +1,48 @@
+/*
+Aqua Test Suite
+
+0011: Integer addition, specific test
+
+- input
+0
+0
+- output
+0
+
+- input
+1
+1
+- output
+2
+
+- input
+1
+-1
+- output
+0
+
+- input
+-2147483647
+2147483647
+- output
+0
+
+- input
+-2147483648
+-2147483648
+- output
+0
+
+*/
+
+.class Test
+{
+	.method static public function Main()
+	{
+		readi	$1
+		readi	$2
+		addi	$1, $1, $2
+		printi	$1
+		ret
+	}
+}

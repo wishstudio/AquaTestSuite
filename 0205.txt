@@ -1,0 +1,32 @@
+/*
+Aqua Test Suite
+
+0205: Constructor with parameters
+
+- output
+10
+20
+
+*/
+
+.class SubClass
+{
+	.method public function .ctor(int32)
+	{
+		ldi	$2, 20
+		printi	$1
+		printi	$2
+		ret
+	}
+}
+
+.class Test
+{
+	.method static public function Main()
+	{
+		/* $1::.ctor(10) */
+		ldi	$3, 10
+		new	$1, SubClass::.ctor(int32)
+		ret
+	}
+}

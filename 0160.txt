@@ -1,0 +1,40 @@
+/*
+Aqua Test Suite
+
+0160: Static methods, reverse order function (a, b -> b, a)
+
+- output
+10
+20
+20
+10
+
+*/
+
+.class SubClass
+{
+	.method static public function reverse(int32, int32) -> int32, int32
+	{
+		ldi	$2, $1
+		ldi	$3, $0
+		ret	$2, $3
+	}
+}
+
+.class Test
+{
+	.method static public function Main()
+	{
+		ldi	$1, 10
+		ldi	$2, 20
+		printi	$1
+		printi	$2
+
+		/* $1, $2 = reverse($1, $2) */
+		call	$1, SubClass::reverse(int32, int32) -> int32, int32
+		printi	$1
+		printi	$2
+
+		ret
+	}
+}

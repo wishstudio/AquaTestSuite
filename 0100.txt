@@ -1,0 +1,38 @@
+/*
+Aqua Test Suite
+
+0100: Static fields, basic load/store
+
+- output
+10
+20
+30
+
+*/
+
+.class SubClass
+{
+	.field static public int32 a
+	.field static public int32 b
+}
+
+.class Test
+{
+	.method static public function Main()
+	{
+		ldi	$1, 10
+		ldsi	SubClass::a, $1
+		ldsi	$2, SubClass::a
+		addi	$2, $1, 10
+		ldsi	SubClass::a, $2
+		ldsi	$2, SubClass::a
+		addi	$2, $2, 10
+		ldsi	SubClass::b, $2
+		ldsi	$2, SubClass::a
+		ldsi	$3, SubClass::b
+		printi	$1
+		printi	$2
+		printi	$3
+		ret
+	}
+}

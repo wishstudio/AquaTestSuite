@@ -1,0 +1,25 @@
+/*
+Aqua Test Suite
+
+0000: Load constants
+
+- output
+40
+70
+30
+
+*/
+
+.class Test
+{
+	.method static public function Main()
+	{
+		ldi	$1, 30
+		ldi	$2, 40
+		ldi	$3, 70
+		printi	$2
+		printi	$3
+		printi	$1
+		ret
+	}
+}

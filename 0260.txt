@@ -1,0 +1,49 @@
+/*
+Aqua Test Suite
+
+0260: Accessing ancestor fields
+
+- output
+100
+
+*/
+
+.class ParentClass
+{
+	.field public int32 a
+}
+
+.class SubClass: ParentClass
+{
+	.method public function .ctor()
+	{
+		ret
+	}
+
+	.method public function SetNumber(int32)
+	{
+		ldfi	$0, ParentClass::a, $1
+		ret
+	}
+
+	.method public function GetNumber() -> int32
+	{
+		ldfi	$1, $0, ParentClass::a
+		ret	$1
+	}
+}
+
+.class Test
+{
+	.method static public function Main()
+	{
+		new	$1, SubClass::.ctor()
+		lda	$2, $1
+		ldi	$3, 100
+		call	$2, SubClass::SetNumber(int32)
+		lda	$2, $1
+		call	$2, SubClass::GetNumber() -> int32
+		printi	$2
+		ret
+	}
+}

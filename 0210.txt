@@ -1,0 +1,35 @@
+/*
+Aqua Test Suite
+
+0210: Load/store instance fields
+
+- output
+123456
+
+*/
+
+.class SubClass
+{
+	.field public int32 a
+
+	.method public function .ctor(int32)
+	{
+		/* this.a = $1 */
+		ldfi	$0, SubClass::a, $1
+		ret
+	}
+}
+
+.class Test
+{
+	.method static public function Main()
+	{
+		/* $1::.ctor(123456) */
+		ldi	$3, 123456
+		new	$1, SubClass::.ctor(int32)
+		/* $2 = $1.a */
+		ldfi	$2, $1, SubClass::a
+		printi	$2
+		ret
+	}
+}

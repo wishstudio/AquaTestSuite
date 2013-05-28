@@ -1,0 +1,34 @@
+/*
+Aqua Test Suite
+
+0201: Construct class within static method
+
+- output
+10
+
+*/
+
+.class SubClass
+{
+	.method public function .ctor()
+	{
+		ldi	$1, 10
+		printi	$1
+		ret
+	}
+
+	.method static public function create()
+	{
+		new	$1, SubClass::.ctor()
+		ret
+	}
+}
+
+.class Test
+{
+	.method static public function Main()
+	{
+		call	$0, SubClass::create()
+		ret
+	}
+}

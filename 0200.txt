@@ -1,0 +1,28 @@
+/*
+Aqua Test Suite
+
+0200: New class instance, constructor calling
+
+- output
+10
+
+*/
+
+.class SubClass
+{
+	.method public function .ctor()
+	{
+		ldi	$1, 10
+		printi	$1
+		ret
+	}
+}
+
+.class Test
+{
+	.method static public function Main()
+	{
+		new	$1, SubClass::.ctor()
+		ret
+	}
+}

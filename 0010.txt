@@ -1,0 +1,42 @@
+/*
+Aqua Test Suite
+
+0010: Integer addition and subtraction, general test
+
+- output
+2147483647
+1
+-2147483648
+1
+-2147483647
+1
+-2147483648
+1
+2147483647
+1
+
+*/
+
+.class Test
+{
+	.method static public function Main()
+	{
+		ldi	$1, 2147483647
+		ldi	$2, 1
+		printi	$1
+		printi	$2
+		addi	$1, $1, $2
+		printi	$1
+		printi	$2
+		addi	$1, $1, $2
+		printi	$1
+		printi	$2
+		subi	$1, $1, $2
+		printi	$1
+		printi	$2
+		subi	$1, $1, $2
+		printi	$1
+		printi	$2
+		ret
+	}
+}

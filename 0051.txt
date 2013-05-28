@@ -1,0 +1,63 @@
+/*
+Aqua Test Suite
+
+0051: Conditional jump, integers
+
+- output
+1
+2
+3
+4
+5
+6
+7
+8
+
+*/
+
+.class Test
+{
+	.method static public function Main()
+	{
+		ldi	$11, 1
+		ldi	$12, 2
+		ldi	$13, 3
+		ldi	$14, 4
+		ldi	$15, 5
+		ldi	$16, 6
+		ldi	$17, 7
+		ldi	$18, 8
+
+		ldi	$1, 0
+		ldi	$2, 10
+		ldi	$3, 10
+		ldi	$4, -10
+		ldi	$5, 2147483647
+		ldi	$6, -2147483648
+		jzi	$1, L4
+
+L1:		printi	$14
+		jlei	$2, $3, L7
+
+L2:		printi	$16
+		jeqi	$3, $4, L8
+
+L3:		printi	$17
+		jneqi	$3, $4, L8
+
+L4:		printi	$11
+		jnzi	$1, L8
+
+L5:		printi	$12
+		jlti	$5, $6, L8
+
+L6:		printi	$13
+		jgti	$5, $6, L1
+
+L7:		printi	$15
+		jgei	$3, $4, L2
+
+L8:		printi	$18
+		ret
+	}
+}

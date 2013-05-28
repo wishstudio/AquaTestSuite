@@ -1,0 +1,105 @@
+/*
+Aqua Test Suite
+
+0502: Fibonacci sequence, array implementation
+
+- output
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+233
+377
+610
+987
+1597
+2584
+4181
+6765
+10946
+17711
+28657
+46368
+75025
+121393
+196418
+317811
+514229
+832040
+1346269
+2178309
+3524578
+5702887
+9227465
+14930352
+24157817
+39088169
+63245986
+102334155
+165580141
+267914296
+433494437
+701408733
+1134903170
+1836311903
+-1323752223
+
+*/
+
+.class Test
+{
+	.method static public function Main()
+	{
+		/* $0: fib array */
+		/* $1: i */
+		/* $2: count */
+		ldi	$2, 48
+		newarr	$0, int32($2)
+
+		/* fib(0) = 0, fib(1) = 1 */
+		ldi	$1, 0
+		ldei	$0($1), $1
+		ldi	$1, 1
+		ldei	$0($1), $1
+
+		/* for (i = 2; i < count; i++) */
+		/*   fib(i) = fib(i - 1) + fib(i - 2); */
+		ldi	$1, 2
+CALC_LOOP:	jgei	$1, $2, PRINT
+
+		/* $3: temp iterator */
+		/* $4: fib(i - 1) */
+		/* $5: fib(i - 2) */
+		subi	$3, $1, 1
+		ldei	$4, $0($3)
+		subi	$3, $1, 2
+		ldei	$5, $0($3)
+
+		addi	$3, $4, $5
+		ldei	$0($1), $3
+
+		addi	$1, $1, 1
+		jmp	CALC_LOOP
+
+		/* for (i = 0; i < count; i++) */
+		/*   print fib(i) */
+PRINT:		ldi	$1, 0
+
+PRINT_LOOP:	jgei	$1, $2, END
+		ldei	$3, $0($1)
+		printi	$3
+		addi	$1, $1, 1
+		jmp	PRINT_LOOP
+
+END:		ret
+	}
+}

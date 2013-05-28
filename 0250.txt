@@ -1,0 +1,53 @@
+/*
+Aqua Test Suite
+
+0250: Virtual methods
+
+- output
+10
+20
+
+*/
+
+.class ParentClass
+{
+	.method public function .ctor()
+	{
+		ret
+	}
+
+	.method public virtual function GetNumber() -> int32
+	{
+		ldi	$1, 10
+		ret	$1
+	}
+}
+
+.class SubClass: ParentClass
+{
+	.method public function .ctor()
+	{
+		ret
+	}
+
+	.method public override function GetNumber() -> int32
+	{
+		ldi	$1, 20
+		ret	$1
+	}
+}
+
+.class Test
+{
+	.method static public function Main()
+	{
+		new	$1, ParentClass::.ctor()
+		callv	$1, ParentClass::GetNumber() -> int32
+		printi	$1
+
+		new	$1, SubClass::.ctor()
+		callv	$1, ParentClass::GetNumber() -> int32
+		printi	$1
+		ret
+	}
+}

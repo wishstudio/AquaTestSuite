@@ -1,0 +1,60 @@
+/*
+Aqua Test Suite
+
+0303: Internal leave in finally block.
+
+- output
+84
+128
+42
+
+*/
+
+.class Exception
+{
+	.field public int32 num
+
+	.method public function .ctor(int32)
+	{
+		ldfi	$0, Exception::num, $1
+		ret
+	}
+}
+
+.class Test
+{
+	.method static public function Main()
+	{
+		.try {
+			.try {
+				ldi	$2, 42
+				new	$0, Exception::.ctor(int32)
+				throw	$0
+
+				/* Should not come here */
+				ldi	$0, 12345
+				printi	$0
+				leave	LABEL
+			}
+			.finally {
+				.try {
+					ldi	$0, 84
+					printi	$0
+					leave	INNER_LABEL
+				}
+				.finally {
+					ldi	$0, 128
+					printi	$0
+					endfinally
+				}
+INNER_LABEL:			endfinally
+			}
+		}
+		.catch (Exception $0) {
+			ldfi	$0, $0, Exception::num
+			printi	$0
+			leave	LABEL
+		}
+LABEL:		ret
+	}
+}

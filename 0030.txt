@@ -1,0 +1,26 @@
+/*
+Aqua Test Suite
+
+0030: Primitive data conversion: int32 -> int16 -> int8
+
+- output
+-65281
+255
+-1
+
+*/
+
+.class Test
+{
+	.method public static function Main()
+	{
+		ldi	$0, -65281 /* 0xFFFF00FF */
+		printi	$0
+		conv	int16 $0, int32 $0
+		printi	$0
+		conv	int8 $0, int32 $0
+		printi	$0
+
+		ret
+	}
+}

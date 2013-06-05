@@ -1,0 +1,59 @@
+/*
+Aqua Test Suite
+
+0290: JINST and JNINST test
+
+- output
+10
+20
+30
+
+*/
+
+.class ParentClass
+{
+	.method public static function .ctor()
+	{
+		ret
+	}
+}
+
+.class SubClass: ParentClass
+{
+	.method public static function .ctor()
+	{
+		ret
+	}
+}
+
+.class SubClass2: ParentClass
+{
+	.method public static function .ctor()
+	{
+		ret
+	}
+}
+
+.class Test
+{
+	.method static public function Main()
+	{
+		new	$1, ParentClass::.ctor()
+		jinst	$1, ParentClass, TRUE_1
+		jmp	DONE_1
+TRUE_1:		ldi	$1, 10
+		printi	$1
+
+DONE_1:		new	$1, SubClass::.ctor()
+		jninst	$1, ParentClass, DONE_2
+		ldi	$1, 20
+		printi	$1
+
+DONE_2:		new	$1, SubClass2::.ctor()
+		jinst	$1, SubClass, DONE_3
+		ldi	$1, 30
+		printi	$1
+
+DONE_3:		ret
+	}
+}

@@ -1,0 +1,79 @@
+/*
+Aqua Test Suite
+
+1005: lae instruction, pointer arithmetic
+
+- output
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+*/
+
+.class Test
+{
+	.method static public function AddOne(int32*, int32) /* ptr, count */
+	{
+		/*
+		for (int i = 0; i < count; i++)
+			*ptr = *ptr + 1
+			ptr++;
+		*/
+		ldi	$2, 0
+LOOP:		jgei	$2, $1, DONE
+
+		ldii	$3, ($0)
+		addi	$3, $3, 1
+		ldii	($0), $3
+
+		ldi	$3, 1
+		addp	$0, $0, $3, int32
+
+		addi	$2, $2, 1
+		jmp	LOOP
+
+DONE:		ret
+	}
+
+	.method static public function Main()
+	{
+		ldi	$0, 10
+		newarr	$0, int32($0)
+		/*
+		for (int i = 0; i < 10; i++)
+			AddOne(&arr[i], 10 - i);
+		*/
+		ldi	$1, 0
+LOOP:		ldi	$2, 10
+		jgei	$1, $2, DONE
+
+		lae	$2, $0($1)
+		ldi	$3, 10
+		subi	$3, $3, $1
+		call	$2, Test::AddOne(int32*, int32)
+
+		addi	$1, $1, 1
+		jmp	LOOP
+
+DONE:		/* print array */
+
+		ldi	$1, 0
+PRINT_LOOP:	ldi	$2, 10
+		jgei	$1, $2, PRINT_DONE
+
+		ldei	$2, $0($1)
+		printi	$2
+
+		addi	$1, $1, 1
+		jmp	PRINT_LOOP
+
+PRINT_DONE:	ret
+	}
+}
